@@ -10,8 +10,11 @@
 
 (function() {
     'use strict';
-
-    var expectedText = 'Пук хрюк';  // Текст, который должен стоять в начале
+    var linkElement = document.getElementById('user-salutation');
+    var textContent = linkElement.textContent;
+    var words = textContent.split(' ');
+    var secondWord = words.length > 1 ? words[1] : null;
+    var expectedText = "When calling our main line (303-532-5955) please ask " + secondWord;  // Текст, который должен стоять в начале
     var inProgress = false;  // Флаг, чтобы избежать рекурсивных изменений
 
     function ensureText() {
@@ -21,7 +24,7 @@
 
             if (!currentText.startsWith(expectedText) && !inProgress) {  // Проверяем, не начинается ли уже с нужного текста
                 inProgress = true;  // Устанавливаем флаг, чтобы избежать повторного срабатывания
-                textarea.value = expectedText + ' ' + currentText;  // Добавляем нужный текст
+                textarea.value = expectedText;  // Добавляем нужный текст
                 inProgress = false;  // Сбрасываем флаг
             }
         }
