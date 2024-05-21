@@ -14,8 +14,8 @@
     var textContent = linkElement.textContent;
     var words = textContent.split(' ');
     var secondWord = words.length > 1 ? words[1] : null;
-    var expectedText = "When calling our main line (303-532-5955) please ask " + secondWord;  // Текст, который должен стоять в начале
-    var inProgress = false;  // Флаг, чтобы избежать рекурсивных изменений
+    var expectedText = "When calling our main line (303-532-5955) please ask " + secondWord;  
+    var inProgress = false;  
 
     function triggerInputChange(element) {
         var event = new Event('input', {
@@ -33,7 +33,7 @@
             if (!currentText.startsWith(expectedText) && !inProgress) {
                 inProgress = true;
                 textarea.value = expectedText + ' ' + currentText;
-                triggerInputChange(textarea); // Вызываем событие input для textarea
+                triggerInputChange(textarea); 
                 inProgress = false;
             }
         }
@@ -42,7 +42,7 @@
     function startObserver() {
         var targetNode = document.body;
         var observer = new MutationObserver(function(mutationsList, observer) {
-            if (!inProgress) {  // Проверяем флаг перед вызовом ensureText
+            if (!inProgress) { 
                 ensureText();
             }
         });
@@ -51,5 +51,5 @@
         observer.observe(targetNode, config);
     }
 
-    startObserver();  // Запускаем наблюдателя при инициализации скрипта
+    startObserver();
 })();
