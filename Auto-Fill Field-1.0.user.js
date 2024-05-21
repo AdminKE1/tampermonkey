@@ -44,5 +44,4 @@
     }
 
     startObserver();  // Запускаем наблюдателя при инициализации скрипта
-    textarea.value = textarea.value.trim() + ".";
 })();
